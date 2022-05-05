@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<section class="wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 class="page-header"><i class="fa fa fa-bars"></i> Dashbord</h3>
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="">Dashbord</a></li>
+        <li><i class="icon_profile"></i><a href="">Results</a></li>
+      </ol>
+    </div>
+  </div>
+  <!-- page start-->
+<center>
+{% if list %}
+<div class="alert alert-success fade in">
+  <h3>According to our prediction ,Following <strong>Human Action Ientified</strong>.</h3>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+        Action Log Details : 
+      </header>
+      <div class="panel-body">
+  {% for ip in list%}
+  <div class="row">
+  <div class="col-lg-12">
+      <label for="cid" class="control-label col-lg-2">Class :</label>
+        <div class="col-lg-4">
+          {{ip.className}}
+        </div>
+      <label for="cid" class="control-label col-lg-2">Corrdinates :</label>
+        <div class="col-lg-4">
+          {{ip.coordinates}}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div></section></div></div>
+    <!--<img src="{% static 'img/Churn.png' %}" class="img-responsive" width="500" height="200" alt="Churn">
+    -->
+{% else %}
+<div class="alert alert-block alert-danger fade in">
+  <h3> <strong>No Human Action Identifed</strong>.</h3>
+</div>
+<!--
+<img src="{% static 'img/NoChurn.png' %}" class="img-responsive" width="500" height="200" alt="NoChurn">
+-->
+{% endif %}
+
+
+</center></section>
+{% endblock %}
