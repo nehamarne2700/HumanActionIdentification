@@ -48,12 +48,13 @@ def predict(request):
     mp_drawing = mp.solutions.drawing_utils # Drawing helpers
     mp_holistic = mp.solutions.holistic # Mediapipe Solutions
     cap = cv2.VideoCapture(0)
+    #print(cv2.getBuildInformation())
     # Initiate holistic model
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
-        
+        print("In cap is opened")
         while cap.isOpened():
             ret, frame = cap.read()
-            
+            print("In cap is opened")
             # Recolor Feed
             image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             image.flags.writeable = False        
@@ -142,14 +143,17 @@ def predict(request):
 
 def predictUploaded(request):
     list1=[]
-    lastvideo= Video.objects.last()
+    path=os.path.join(os.path.dirname(__file__),'Input_Check.mp4')
+    #lastvideo= Video.objects.last()
+    #print(lastvideo.video.url)
     mp_drawing = mp.solutions.drawing_utils # Drawing helpers
     mp_holistic = mp.solutions.holistic # Mediapipe Solutions
-    cap = cv2.VideoCapture(lastvideo.video.url)
+    cap = cv2.VideoCapture(path)#lastvideo.video.url)
     # Initiate holistic model
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
-        
+        print("in with")
         while cap.isOpened():
+            print("in isopend")
             ret, frame = cap.read()
             if ret==True:
                 # Recolor Feed
@@ -190,8 +194,8 @@ def predictUploaded(request):
                     # Make Detections
                     print('hello')
                     X = pd.DataFrame([row])
-                    body_language_class = body_languageConfig.model.predict(X)[0]
-                    body_language_prob = body_languageConfig.model.predict_proba(X)[0]
+                    body_language_class = HaiConfig.model.predict(X)[0]
+                    body_language_prob = HaiConfig.model.predict_proba(X)[0]
                     print(body_language_class, body_language_prob)
                     list1.append(inputCoordinates(body_language_class,body_language_prob))
                     print('after')
@@ -238,4 +242,7 @@ def predictUploaded(request):
     cap.release()
     cv2.destroyAllWindows()
     return render(request,'predResult.html',{'list':list1})
+
+def help(request):
+    return render(request,'help.html')
     
