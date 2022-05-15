@@ -1,4 +1,6 @@
 from django.shortcuts import render,HttpResponse,redirect
+from json import dumps
+from HumanActionIdentification.settings import BASE_DIR
 from .forms import Video_form
 from .models import Video
 from .load import inputCoordinates
@@ -39,8 +41,12 @@ def index(request):
         form=Video_form()
     return render(request,'index.html',{"form":form,"all":all_video})
 
+def home(request):
+    return render(request,'home.html')
+
 def videos(request):
     all_video=Video.objects.all()
+    
     return render(request,'video.html',{"all":all_video})
 
 def predict(request):
@@ -143,9 +149,16 @@ def predict(request):
 
 def predictUploaded(request):
     list1=[]
-    path=os.path.join(os.path.dirname(__file__),'Input_Check.mp4')
-    #lastvideo= Video.objects.last()
-    #print(lastvideo.video.url)
+    lastvideo= Video.objects.last()
+     
+    val1=str(request.POST.get("sel",False))
+    print("sel : ",val1)
+    p='\\Users\\admin\\Desktop\\BEproj\\HumanActionIdentification'+lastvideo.video.url
+    path=os.path.join(os.path.join(BASE_DIR,p))#os.path.dirname(__file__),'Input_Check.mp4')
+    print(path)
+    
+    print(lastvideo.video.url)
+    print(os.path.join(BASE_DIR,lastvideo.video.url))
     mp_drawing = mp.solutions.drawing_utils # Drawing helpers
     mp_holistic = mp.solutions.holistic # Mediapipe Solutions
     cap = cv2.VideoCapture(path)#lastvideo.video.url)
@@ -234,7 +247,8 @@ def predictUploaded(request):
                     print("exeption : ",e)
                                 
                 cv2.imshow('Raw Webcam Feed', image)
-                cv2.waitKey(1)
+                if cv2.waitKey(10) & 0xFF == ord('q'):
+                    break
                 
             else:
                 break
@@ -245,4 +259,8 @@ def predictUploaded(request):
 
 def help(request):
     return render(request,'help.html')
+
+def delete(request):
+    Video.objects.all().delete()
+    return HttpResponse("<h1> Deleted successfully </h1>")
     

@@ -1,0 +1,89 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<section class="wrapper">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa fa-bars"></i> Dashboard</h3>
+        <ol class="breadcrumb">
+          <li><i class="icon_profile"></i><a href="">Dashboard</a></li>
+          
+        </ol>
+      </div>
+    </div>
+    <!-- page start-->
+    
+    <div class="row">
+      <div class="col-lg-12">
+        <section class="panel">
+          <header class="panel-heading">
+            <h3>What is Human Action Recognition/Identification?</h3>
+          </header>
+          <div class="panel-body">
+            <div class="col-lg-6">
+            <br><ul style="list-style-type: square;">
+    <li><p style="font-size: 16px;">Human activity recognition (HAR) can be referred to as the art of identifying and naming activities using Artificial Intelligence (AI) from the gathered activity raw data by utilizing various sources (so-called devices).  </p></li><br>
+    <li><p style="font-size: 16px;">In this project we have used pose estimation technique (mediapipe) </p></li><br>
+    <li><p style="font-size: 16px;">Human Pose estimation is a computer vision task that represents the orientation of a person in a graphical format. This technique is widely applied to predict a person’s body parts or joint position. It is one of the most exciting areas of research in computer vision that has gained a lot of traction because of its abundance of applications that can benefit from such a technology. </p></li></ul></div>
+    
+<video class="embed-responsive embed-responsive-16by9" controls="controls" >
+  <source src="{% static 'img/mediapipe.mp4' %}" type="video/mp4"  width="460" height="345"/>
+  </video></div>
+</section></div></div>
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+        <h3>Estimated Model : </h3>
+      </header>
+      <div class="panel-body">
+        <div class="col-lg-6">
+         <img src="{% static 'img/model.jpg' %}" class="img-responsive" width="460" height="345" alt="percentageChurn">
+</div><div class="col-lg-16">
+<img src="{% static 'img/HAI.png' %}" class="img-responsive" width="460" height="345" alt="percentageChurn"></div></section></div></div>
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+        <h3>Applications</h3>
+      </header>
+      <div class="panel-body">
+        <div class="col-lg-12">
+        <br><ul style="list-style-type: square;">
+<li><p style="font-size: 20px;">1. Human Activity & Movement Estimation</p></li><br>
+<li><p style="font-size: 16px;">One of the most apparent dimensions applicable to pose estimation is tracking and measuring human activity and movement. Many architectures like OpenPose, PoseNet, and DensePose are often practised for action, gesture, or gait recognition. Some examples of human activity tracking are:
+  <ul type="circle">	
+  <li>AI-powered sports coaches or personal gym trainer</li>
+  <li>Sitting gestures detection></li>
+  <li>Workplace activity monitoring></li>
+  <li>Sign language communication for disabled</li>
+  <li>Traffic policemen signal detection</li>
+  <li>Cricket umpire signal detection</li>
+  <li>Dance techniques detection</li>
+  <li>Monitoring movements in security and surveillance</li>
+  <li>Crowd counting and tracking for retail outlets</li>
+  </ul >
+   </p></li></ul></div>
+   
+<br>
+        <div class="col-lg-12">
+        <br><ul style="list-style-type: square;">
+<li><p style="font-size: 20px;">2. Augmented Reality & Virtual Reality (AR/ VR)</p></li><br>
+<li><p style="font-size: 16px;">When clubbed with augmented and virtual reality applications, human pose estimation presents an opportunity to create more realistic and responsive experiences. For example, you can learn to play various games like tennis or golf via virtual tutors who are pose illustrated. More so, the US army has implemented AR programs in combat. It helps soldiers distinguish between enemies and friendly troops.  
+   </p></li></ul></div>
+   <div class="col-lg-12">
+    <br><ul style="list-style-type: square;">
+<li><p style="font-size: 20px;">3. Robotics</p></li><br>
+<li><p style="font-size: 16px;">Traditional industrial robots are based on 2D vision systems with many limitations. In place of manually programming robots to learn movements, a 3D pose estimation technique can be employed. This approach creates more responsive, flexible, and true-to-life robotics systems. It enables robots to understand actions and movements by following the tutor’s posture, look, or appearance.
+</p></li></ul></div>
+
+<div class="col-lg-12">
+  <br><ul style="list-style-type: square;">
+<li><p style="font-size: 20px;">4. Animation & Gamings</p></li><br>
+<li><p style="font-size: 16px;">Modern advancements in pose estimation and motion capture technology make character animation a streamlined and automated process. For example, Microsoft’s Kinect depth camera captures human motion in real-time using IR sensors data and uses it to render the characters’ actions virtually into the gaming environment. Likewise, capturing animations for immersive video game experiences can also effortlessly be automated by different pose estimation architectures.
+</p></li></ul></div>
+</div></section></div></div>
+
+    </section>
+      {% endblock %} 

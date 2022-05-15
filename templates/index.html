@@ -63,22 +63,22 @@
     <div id="sidebar" class="nav-collapse ">
       <!-- sidebar menu start-->
       <ul class="sidebar-menu">
-        <li class="">
-          <a class="" href="">
+        
+        <li class="sub-menu">
+          <a href="home" class="">
                         <i class="icon_house_alt"></i>
                         <span>Dashboard</span>
                     </a>
-        </li>
-        <li class="sub-menu">
-          <a href="" class="">
-                        <i class="icon_profile"></i>
-                        <span>Login</span>
-                    </a>
           
         </li>
-        
+        <li class="">
+          <a class="" href="index">
+                        <i class="icon_profile"></i>
+                        <span>ActionIdentification</span>
+                    </a>
+        </li>
         <li class="sub-menu ">
-          <a href="" class="">
+          <a href="help" class="">
                         <i class="icon_documents_alt"></i>
                         <span>Help</span>
                     </a>
@@ -93,60 +93,72 @@
 
 <section id="main-content">
   {% block content %}
-    <section class="wrapper">
-      <div class="row">
-        <div class="col-lg-12">
-          <h3 class="page-header"><i class="fa fa fa-bars"></i> Dashbord</h3>
-          <ol class="breadcrumb">
-            <li><i class="fa fa-home"></i><a href="">Dashbord</a></li>
-            
-          </ol>
-        </div>
+  <section class="wrapper">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa fa-bars"></i> ActionIdentification</h3>
+        <ol class="breadcrumb">
+          <li><i class="icon_profile"></i><a href="">ActionIdentification</a></li>
+          
+        </ol>
       </div>
-      <!-- page start-->
-      
-      <div class="row">
-        <div class="col-lg-12">
-        <section class="panel">
-          <header class="panel-heading">
-           <h3>Action Input:</h3>
-          </header>
-          <div class="panel-body">
-        <div class="col-lg-12">
-          <div class="row">
-          <div class="form">
-            <form class="form-validate form-horizontal" id="feedback_form" method="POST" action="predict">
-                {% csrf_token %}
+    </div>
+    <!-- page start-->
+    
+    <div class="row">
+      <div class="col-lg-12">
+      <section class="panel" style="overflow:hidden;">
+        <header class="panel-heading">
+         <h3>Live Action Input:</h3>
+        </header>
+        <div class="panel-body">
+      <div class="col-lg-12">
+        <div class="row">
+        <div class="form">
+          <form class="form-validate form-horizontal" id="feedback_form" method="POST" action="predict">
+              {% csrf_token %}
+        <div class="form-group">
+          <div class="col-lg-offset-4 col-lg-10">
+            <button class="btn btn-primary btn-lg" type="submit">Open Camera(Live Input)</button>
+            
+          </div>
+        </div>
+        <br>
+        </form>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section></div></div>
+        <div class="row">
+          <div class="col-lg-12">
+          <section class="panel" style="overflow:hidden;">
+            <header class="panel-heading">
+             <h3>Upload Video Input:</h3>
+            </header>
+            <div class="panel-body">
+            <div class="form">
+        <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
           <div class="form-group">
             <div class="col-lg-offset-4 col-lg-10">
-              <button class="btn btn-primary btn-lg" type="submit">Open Camera(Live Input)</button>
-              
-            </div>
+          {{form.as_p}}
+          <button class="btn btn-primary btn-lg">Upload</button>
           </div>
-          <br>
-          </form>
-          <form action="" method="post" enctype="multipart/form-data">
+          </form><br/><br/>
+          <form action="videos" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
-              <div class="col-lg-offset-4 col-lg-10">
-            {{form.as_p}}
-            <button class="btn btn-primary btn-lg">Upload</button>
+              <div class="col-lg-offset-4 col-lg-10" style="margin-top: 10px;">
+            <button class="btn btn-primary btn-lg">Use Uploaded Input</button>
             </div></div>
-            </form>
-            <form action="predictUploaded" method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              <div class="form-group">
-                <div class="col-lg-offset-4 col-lg-10">
-              <button class="btn btn-primary btn-lg">Use Last Uploaded Input</button>
-              </div></div>
-              </form>
-            </div>
-          </div></div>
-      </div></div></section></div></div>
+            </form></div>
+         </div>
+    </div></section></div></div>
+    
       
-        
-        
-        </div>
+      
+      
       {% endblock %}
  <div class="text-right">
       <div class="credits">

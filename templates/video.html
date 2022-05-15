@@ -13,14 +13,44 @@ integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark">
-        <span class="navbar-brand mb-0 h1">BLC</span>
+        <span class="navbar-brand mb-0 h1">All Uploaded videos</span>
         </nav>
-        <h1>Welcome to blearning club</h1>
-        <div class="container">
         
+                
         {% if all %}
-        
+
+        <div class="row">
+            <div class="col-lg-12">
+              <section class="panel">
+                
+                <div class="panel-body" style="margin :10px">
+                  <form class="form-inline" role="form" id="form1" method="POST" action="predictUploaded">
+                    {% csrf_token %}
+                    <div class="form-group" style="margin-left: 10px;">
+                        <label>Select a video file</label>
+                      </div>
+                    <div class="form-group" style="margin-left: 10px;">
+                        <select id="sel" class="form-select " aria-label=".form-select-lg example">
+                            {% for x in all %}
+                                <option value="{{x.video.url}}">{{x.caption}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div style="margin-left: 10px;">
+                    <button class="btn btn-primary " type="submit">Use This Video</button>
+                </div>
+                  </form>
+  
+                </div>
+              </section>
+  
+            </div>
+          </div>
+
         <hr>
+        <hr>
+        <div class="container">
+            <div style="width: 500px; margin: auto;">
         {% for x in all %}
         <h3 class="text-center mt-2 mb-2">{{x.caption}}</h3>
         <video class="embed-responsive embed-responsive-16by9" controls="controls" >
@@ -30,7 +60,7 @@ integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ
         {% else %}
         <h3 class="text-center mt-2 mb-2">No Uploded Videos..</h3>
         {% endif %}
-        </div>
+        </div></div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-
 DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-
