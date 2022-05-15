@@ -22,9 +22,9 @@ import pickle
 # Create your views here.
 def index(request):
     all_video=Video.objects.all()
-    print("inn")
+    #print("inn")
     if request.method == "POST":
-        print("in if")
+        #print("in if")
         form=Video_form(data=request.POST,files=request.FILES)
         
         if form.is_valid():
@@ -37,7 +37,7 @@ def index(request):
             print(form.non_field_errors)
             print(form.errors)
     else:
-        print("in else")
+        #print("in else")
         form=Video_form()
     return render(request,'index.html',{"form":form,"all":all_video})
 
@@ -57,10 +57,10 @@ def predict(request):
     #print(cv2.getBuildInformation())
     # Initiate holistic model
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
-        print("In cap is opened")
+        #print("In cap is opened")
         while cap.isOpened():
             ret, frame = cap.read()
-            print("In cap is opened")
+            #print("In cap is opened")
             # Recolor Feed
             image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             image.flags.writeable = False        
@@ -97,13 +97,13 @@ def predict(request):
     #                 csv_writer.writerow(row) 
 
                 # Make Detections
-                print('hello')
+                #print('hello')
                 X = pd.DataFrame([row])
                 body_language_class = HaiConfig.model.predict(X)[0]
                 body_language_prob = HaiConfig.model.predict_proba(X)[0]
-                print(body_language_class, body_language_prob)
+                #print(body_language_class, body_language_prob)
                 list1.append(inputCoordinates(body_language_class,body_language_prob))
-                print('after')
+                #print('after')
                 # Grab ear coords
                 coords = tuple(np.multiply(
                                 np.array(
@@ -136,7 +136,8 @@ def predict(request):
                 
                 
             except Exception as e:
-                print("exeption : ",e)
+                #print("exeption : ",e)
+                pass
                             
             cv2.imshow('Raw Webcam Feed', image)
 
@@ -152,10 +153,10 @@ def predictUploaded(request):
     #lastvideo= Video.objects.last()
      
     val1=str(request.POST["sel"])
-    print("sel : ",val1)
+    #print("sel : ",val1)
     p='\\Users\\admin\\Desktop\\BEproj\\HumanActionIdentification'+val1
     path=os.path.join(os.path.join(BASE_DIR,p))#os.path.dirname(__file__),'Input_Check.mp4')
-    print(path)
+    #print(path)
     
     #print(lastvideo.video.url)
     #print(os.path.join(BASE_DIR,lastvideo.video.url))
@@ -164,9 +165,9 @@ def predictUploaded(request):
     cap = cv2.VideoCapture(path)#lastvideo.video.url)
     # Initiate holistic model
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
-        print("in with")
+        #print("in with")
         while cap.isOpened():
-            print("in isopend")
+            #print("in isopend")
             ret, frame = cap.read()
             if ret==True:
                 # Recolor Feed
@@ -205,13 +206,13 @@ def predictUploaded(request):
         #                 csv_writer.writerow(row) 
 
                     # Make Detections
-                    print('hello')
+                    #print('hello')
                     X = pd.DataFrame([row])
                     body_language_class = HaiConfig.model.predict(X)[0]
                     body_language_prob = HaiConfig.model.predict_proba(X)[0]
-                    print(body_language_class, body_language_prob)
+                    #print(body_language_class, body_language_prob)
                     list1.append(inputCoordinates(body_language_class,body_language_prob))
-                    print('after')
+                    #print('after')
                     # Grab ear coords
                     coords = tuple(np.multiply(
                                     np.array(
@@ -244,7 +245,8 @@ def predictUploaded(request):
                     
                     
                 except Exception as e:
-                    print("exeption : ",e)
+                    #print("exeption : ",e)
+                    pass
                                 
                 cv2.imshow('Raw Webcam Feed', image)
                 if cv2.waitKey(10) & 0xFF == ord('q'):
