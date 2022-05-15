@@ -149,16 +149,16 @@ def predict(request):
 
 def predictUploaded(request):
     list1=[]
-    lastvideo= Video.objects.last()
+    #lastvideo= Video.objects.last()
      
-    val1=str(request.POST.get("sel",False))
+    val1=str(request.POST["sel"])
     print("sel : ",val1)
-    p='\\Users\\admin\\Desktop\\BEproj\\HumanActionIdentification'+lastvideo.video.url
+    p='\\Users\\admin\\Desktop\\BEproj\\HumanActionIdentification'+val1
     path=os.path.join(os.path.join(BASE_DIR,p))#os.path.dirname(__file__),'Input_Check.mp4')
     print(path)
     
-    print(lastvideo.video.url)
-    print(os.path.join(BASE_DIR,lastvideo.video.url))
+    #print(lastvideo.video.url)
+    #print(os.path.join(BASE_DIR,lastvideo.video.url))
     mp_drawing = mp.solutions.drawing_utils # Drawing helpers
     mp_holistic = mp.solutions.holistic # Mediapipe Solutions
     cap = cv2.VideoCapture(path)#lastvideo.video.url)
@@ -262,5 +262,5 @@ def help(request):
 
 def delete(request):
     Video.objects.all().delete()
-    return HttpResponse("<h1> Deleted successfully </h1>")
+    return render(request,'video.html')
     
